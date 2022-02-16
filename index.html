@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Project Site</title>
+
+    <script>
+
+      function chooseLink() {
+
+        var random = Math.floor(Math.random() * 2)
+        var links = ["https://www.youtube.com/watch?v=SrFUKz8x0C8", "https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
+        var link
+
+        switch (random) {
+          case 0:
+            link = links[0]
+            break;
+          case 1:
+            link = links[1]
+            break;
+            default:
+              console.warn("'Random' variable not in range.");
+        }
+
+        window.location.replace(link);
+
+      }
+
+    </script>
+
+  </head>
+  <body onload="chooseLink()">
+
+  </body>
+</html>
