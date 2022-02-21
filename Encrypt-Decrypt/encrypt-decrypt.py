@@ -11,7 +11,7 @@ def encode(string, key):
         index = index + key
 
         # Adding 0 to the start of index if it is less than 10.
-        if index < 9:
+        if index <= 9:
 
             index = "0" + str(index)
 
@@ -31,9 +31,35 @@ def encode(string, key):
     print(result)
     return result
 
-encode("abcdefghijkl", 1)
+def decode(string, key):
 
-if encode("abcdefghijkl", 1) != "01020304050607089101112":
+    string = string.lower()
+    letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    result = ""
+    string_list = []
+
+    for index in range(0, len(string), 2):
+        string_list.append(string[index : index + 2])
+
+    for number in string_list:
+
+        number = int(number) - key
+        decoded = letters[int(number)]
+        result = result + decoded
+        result = ''.join(result)
+
+    print(result)
+    return result
+
+# encode("abcdefghijkl", 1)
+# decode("010203040506070809101112", 1)
+
+if encode("abcdefghijkl", 1) != "010203040506070809101112":
 
     print("ERROR WITH 'encode()'")
-    print("01020304050607089101112 should be the result")
+    print("010203040506070809101112 should be the result")
+
+if decode("010203040506070809101112", 1) != "abcdefghijkl":
+
+    print("ERROR WITH 'encode()'")
+    print("abcdefghijkl should be the result")
