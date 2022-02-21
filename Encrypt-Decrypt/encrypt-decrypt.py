@@ -77,9 +77,11 @@ while not valid:
     if user_input == "e":
         action = "encrypt"
         valid = True
+        print()
     elif user_input == "d":
         action = "encrypt"
         valid = True
+        print()
     else:
         print("Please enter 'e' or 'd'.")
         user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
@@ -94,6 +96,7 @@ while not valid:
         text = input("What would you like to " + action + "?\n")
     else:
         valid = True
+        print()
 
 valid = False
 pattern = re.compile("^[0-9]+$")
@@ -106,6 +109,7 @@ while not valid:
         key = input("What is your key?\n")
     else:
         valid = True
+        print()
 
 if action == "encrypt":
     print(encode(text, key) + " is your encrypted text.")
