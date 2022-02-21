@@ -31,8 +31,8 @@ def encode(string, key):
     return result
 
 encode("abcdefghijkl", 1)
-print("01020304050607089101112 should be the result")
 
 if encode("abcdefghijkl", 1) != "01020304050607089101112":
 
     print("ERROR WITH 'encode()'")
+    print("01020304050607089101112 should be the result")
