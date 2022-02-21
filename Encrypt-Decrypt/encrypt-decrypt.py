@@ -27,7 +27,7 @@ def encode(string, key):
     # Convert string list to string.
     result = ''.join(result)
 
-    #Dont need this 'print' any more.
+    # Dont need this 'print' any more.
     print(result)
     return result
 
@@ -38,16 +38,19 @@ def decode(string, key):
     result = ""
     string_list = []
 
+    # Chunk string into 2 letter segments in list.
     for index in range(0, len(string), 2):
         string_list.append(string[index : index + 2])
 
     for number in string_list:
 
+        # Decode letter.
         number = int(number) - key
         decoded = letters[int(number)]
+        # Join result.
         result = result + decoded
-        result = ''.join(result)
 
+    # Dont need this 'print' any more.
     print(result)
     return result
 
@@ -61,5 +64,5 @@ if encode("abcdefghijkl", 1) != "010203040506070809101112":
 
 if decode("010203040506070809101112", 1) != "abcdefghijkl":
 
-    print("ERROR WITH 'encode()'")
+    print("ERROR WITH 'decode()'")
     print("abcdefghijkl should be the result")
