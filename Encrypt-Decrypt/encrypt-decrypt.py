@@ -6,19 +6,33 @@ def encode(string, key):
 
     for letter in string:
 
-        #Encode letters
+        # Encode letters
         index = letters.index(letter)
         index = index + key
-        letter = letters[index]
 
-        #Reverse letters.
-        i = 0
-        result.insert(0, letter)
-        ++i
+        # Adding 0 to the start of index if it is less than 10.
+        if index < 9:
 
-    #Convert array to string.
+            index = "0" + str(index)
+
+        # Reverse letters.
+        # i = 0
+        # result.insert(0, index)
+        # ++i
+
+        result.append(index)
+
+    # Convert int list to string list.
+    result = [str(x) for x in result]
+    # Convert string list to string.
     result = ''.join(result)
+
     print(result)
+    return result
 
+encode("abcdefghijkl", 1)
+print("01020304050607089101112 should be the result")
 
-encode("AbC", 0)
+if encode("abcdefghijkl", 1) != "01020304050607089101112":
+
+    print("ERROR WITH 'encode()'")
