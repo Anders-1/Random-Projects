@@ -67,53 +67,61 @@ if decode("010203040506070809101112", 1) != "abcdefghijkl":
 
 
 # User input.
-pattern = re.compile("[A-Za-z]+")
-action = ""
-valid = False
-user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
+# COMBAK: Change regex for decrypting!
+def getUserInput():
 
-while not valid:
+    pattern = re.compile("[A-Za-z]+")
+    action = ""
+    valid = False
+    user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
 
-    if user_input == "e":
-        action = "encrypt"
-        valid = True
-        print()
-    elif user_input == "d":
-        action = "encrypt"
-        valid = True
-        print()
+    while not valid:
+
+        if user_input == "e":
+            action = "encrypt"
+            valid = True
+            print()
+        elif user_input == "d":
+            action = "encrypt"
+            valid = True
+            print()
+        else:
+            print("Please enter 'e' or 'd'.")
+            user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
+
+    valid = False
+    text = input("What would you like to " + action + "?\n")
+
+    while not valid:
+
+        if pattern.fullmatch(text) == None or text == "\n":
+            print("Please only use a-z.")
+            text = input("What would you like to " + action + "?\n")
+        else:
+            valid = True
+            print()
+
+    valid = False
+    pattern = re.compile("^[0-9]+$")
+    key = input("What is your key?\n")
+
+    while not valid:
+
+        if pattern.fullmatch(key) == None or text == "\n":
+            print("Please only use integers.")
+            key = input("What is your key?\n")
+        else:
+            valid = True
+            print()
+
+    if action == "encrypt":
+        print(encode(text, key) + " is your encrypted text. \n")
+        getUserInput()
+    elif action == "decrypt":
+        print(decode(text, key) + " is your decrypted text. \n")
+        getUserInput()
     else:
-        print("Please enter 'e' or 'd'.")
-        user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
+        print("WARNING: Variable 'action' is not in range!" + action + " is what action is. \n")
+        getUserInput()
 
-valid = False
-text = input("What would you like to " + action + "?\n")
-
-while not valid:
-
-    if pattern.fullmatch(text) == None or text == "\n":
-        print("Please only use a-z.")
-        text = input("What would you like to " + action + "?\n")
-    else:
-        valid = True
-        print()
-
-valid = False
-pattern = re.compile("^[0-9]+$")
-key = input("What is your key?\n")
-
-while not valid:
-
-    if pattern.fullmatch(key) == None or text == "\n":
-        print("Please only use integers.")
-        key = input("What is your key?\n")
-    else:
-        valid = True
-        print()
-
-if action == "encrypt":
-    print(encode(text, key) + " is your encrypted text.")
-elif action == "decrypt":
-    print(decode(text, key) + " is your decrypted text")
-else:
-    print("WARNING: Variable 'action' is not in range!" + action + " is what action is.")
+getUserInput()
