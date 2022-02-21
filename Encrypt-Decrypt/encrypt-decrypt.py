@@ -1,3 +1,5 @@
+import re
+
 def encode(string, key):
 
     string = string.lower()
@@ -8,7 +10,7 @@ def encode(string, key):
 
         # Encode letters
         index = letters.index(letter)
-        index = index + key
+        index = index + int(key)
 
         # Adding 0 to the start of index if it is less than 10.
         if index <= 9:
@@ -27,8 +29,6 @@ def encode(string, key):
     # Convert string list to string.
     result = ''.join(result)
 
-    # Dont need this 'print' any more.
-    print(result)
     return result
 
 def decode(string, key):
@@ -50,8 +50,6 @@ def decode(string, key):
         # Join result.
         result = result + decoded
 
-    # Dont need this 'print' any more.
-    print(result)
     return result
 
 # encode("abcdefghijkl", 1)
@@ -66,3 +64,52 @@ if decode("010203040506070809101112", 1) != "abcdefghijkl":
 
     print("ERROR WITH 'decode()'")
     print("abcdefghijkl should be the result")
+
+
+# User input.
+pattern = re.compile("[A-Za-z]+")
+action = ""
+valid = False
+user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
+
+while not valid:
+
+    if user_input == "e":
+        action = "encrypt"
+        valid = True
+    elif user_input == "d":
+        action = "encrypt"
+        valid = True
+    else:
+        print("Please enter 'e' or 'd'.")
+        user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
+
+valid = False
+text = input("What would you like to " + action + "?\n")
+
+while not valid:
+
+    if pattern.fullmatch(text) == None or text == "\n":
+        print("Please only use a-z.")
+        text = input("What would you like to " + action + "?\n")
+    else:
+        valid = True
+
+valid = False
+pattern = re.compile("^[0-9]+$")
+key = input("What is your key?\n")
+
+while not valid:
+
+    if pattern.fullmatch(key) == None or text == "\n":
+        print("Please only use integers.")
+        key = input("What is your key?\n")
+    else:
+        valid = True
+
+if action == "encrypt":
+    print(encode(text, key) + " is your encrypted text.")
+elif action == "decrypt":
+    print(decode(text, key) + " is your decrypted text")
+else:
+    print("WARNING: Variable 'action' is not in range!" + action + " is what action is.")
