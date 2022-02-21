@@ -45,7 +45,7 @@ def decode(string, key):
     for number in string_list:
 
         # Decode letter.
-        number = int(number) - key
+        number = int(number) - int(key)
         decoded = letters[int(number)]
         # Join result.
         result = result + decoded
@@ -67,12 +67,35 @@ if decode("010203040506070809101112", 1) != "abcdefghijkl":
 
 
 # User input.
-# COMBAK: Change regex for decrypting!
 def getUserInput():
 
-    pattern = re.compile("[A-Za-z]+")
+    # Variables
+    encrypt_pattern = re.compile("[A-Za-z]+")
+    decrypt_pattern = re.compile("^[0-9]+$")
+    pattern = encrypt_pattern
     action = ""
+    please_texts = {
+
+        "a-z": "Please only use a-z.",
+        "integers": "Please only use integers.",
+        "e or d": "Please enter 'e' or 'd'."
+
+    }
+    please_text = ""
+    class bcolors:
+        HEADER = '\033[95m'
+        OKBLUE = '\033[94m'
+        OKCYAN = '\033[96m'
+        OKGREEN = '\033[92m'
+        WARNING = '\033[93m'
+        FAIL = '\033[91m'
+        ENDC = '\033[0m'
+        BOLD = '\033[1m'
+        UNDERLINE = '\033[4m'
+
+    # Encrypt or decrypt.
     valid = False
+    please_text = "e or d"
     user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
 
     while not valid:
@@ -82,38 +105,52 @@ def getUserInput():
             valid = True
             print()
         elif user_input == "d":
-            action = "encrypt"
+            action = "decrypt"
             valid = True
             print()
         else:
-            print("Please enter 'e' or 'd'.")
+            print(please_texts[please_text])
             user_input = input("Would you like to (e)ncrypt or (d)ecrypt?\n")
 
+    # Set regex and please text.
+    if action == "encrypt":
+        pattern = encrypt_pattern
+        please_text = "a-z"
+    elif action == "decrypt":
+        pattern = decrypt_pattern
+        please_text = "integers"
+    else:
+        print("WARNING: Variable 'action' is not in range!" + action + " is what action is. \n")
+
+    # What to encrypt/decrypt.
     valid = False
     text = input("What would you like to " + action + "?\n")
 
     while not valid:
 
         if pattern.fullmatch(text) == None or text == "\n":
-            print("Please only use a-z.")
+            print(please_texts[please_text])
             text = input("What would you like to " + action + "?\n")
         else:
             valid = True
             print()
 
+    # Key.
     valid = False
-    pattern = re.compile("^[0-9]+$")
+    please_text = "integers"
+    pattern = decrypt_pattern
     key = input("What is your key?\n")
 
     while not valid:
 
         if pattern.fullmatch(key) == None or text == "\n":
-            print("Please only use integers.")
+            print(please_texts[please_text])
             key = input("What is your key?\n")
         else:
             valid = True
             print()
 
+    # Function.
     if action == "encrypt":
         print(encode(text, key) + " is your encrypted text. \n")
         getUserInput()
