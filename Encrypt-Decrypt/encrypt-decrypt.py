@@ -27,6 +27,7 @@ def encode(string, key):
     # Convert string list to string.
     result = ''.join(result)
 
+    #Dont need this 'print' any more.
     print(result)
     return result
 
