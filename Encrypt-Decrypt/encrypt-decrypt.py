@@ -93,7 +93,7 @@ def getUserInput():
     if not asked_color:
 
         valid = False
-        please_text = "e or d"
+        please_text = "y or n"
         user_input = input("Would like to use color (y) or not (n)? \n")
 
         while not valid:
