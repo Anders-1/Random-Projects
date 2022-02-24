@@ -141,7 +141,7 @@ def getUserInput():
         pattern = decrypt_pattern
         please_text = "integers"
     else:
-        print("WARNING: Variable 'action' is not in range!" + action + " is what action is. \n")
+        print("WARNING: Variable 'action' is not in range! " + action + " is what action is. \n")
 
     # What to encrypt/decrypt.
     valid = False
@@ -181,7 +181,7 @@ def getUserInput():
         print(decode(text, key) + " is your decrypted text. \n")
         getUserInput()
     else:
-        print("WARNING: Variable 'action' is not in range!" + action + " is what action is. \n")
+        print("WARNING: Variable 'action' is not in range! " + action + " is what action is. \n")
         getUserInput()
 
 getUserInput()
