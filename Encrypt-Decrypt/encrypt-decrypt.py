@@ -109,6 +109,7 @@ def getUserInput():
                 asked_color = True
                 print()
             else:
+                print()
                 print(please_texts[please_text])
                 user_input = input("Would like to use color (y) or not (n)? \n")
 
@@ -128,6 +129,7 @@ def getUserInput():
             valid = True
             print()
         else:
+            print()
             print(please_texts[please_text])
             user_input = input("Would you like to (e)ncrypt or (d)ecrypt? \n")
 
@@ -148,6 +150,7 @@ def getUserInput():
     while not valid:
 
         if pattern.fullmatch(text) == None or text == "\n":
+            print()
             print(please_texts[please_text])
             text = input("What would you like to " + action + "? \n")
         else:
@@ -163,6 +166,7 @@ def getUserInput():
     while not valid:
 
         if pattern.fullmatch(key) == None or text == "\n":
+            print()
             print(please_texts[please_text])
             key = input("What is your key?\n")
         else:
