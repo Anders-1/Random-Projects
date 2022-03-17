@@ -54,8 +54,7 @@ def decode(string, key):
 
     return result
 
-# encode("abcdefghijkl", 1)
-# decode("010203040506070809101112", 1)
+# REMEMBER TO UPDATE THIS WHEN CHANING THE ENCRYPTION/DECRYPTION ALGORYTHM!!!
 
 if encode("abcdefghijkl", 1) != "010203040506070809101112":
 
@@ -79,11 +78,22 @@ def getUserInput():
     pattern = encrypt_pattern
     action = ""
     color = False
+    class colors:
+        HEADER = '\033[95m'
+        OKBLUE = '\033[94m'
+        OKCYAN = '\033[96m'
+        OKGREEN = '\033[92m'
+        WARNING = '\033[93m'
+        FAIL = '\033[91m'
+        ENDC = '\033[0m'
+        BOLD = '\033[1m'
+        UNDERLINE = '\033[4m'
+
     please_texts = {
 
-        "a-z": "Please only use a-z.",
-        "integers": "Please only use integers.",
-        "e or d": "Please enter 'e' or 'd'.",
+        "a-z": colors.UNDERLINE + "Please only use a-z." + colors.ENDC,
+        "integers": colors.UNDERLINE + "Please only use integers." + colors.ENDC,
+        "e or d": colors.UNDERLINE + "Please enter 'e' or 'd'." + colors.ENDC,
         "y or n": "Please enter 'y' or 'n'."
 
     }
@@ -113,10 +123,42 @@ def getUserInput():
                 print(please_texts[please_text])
                 user_input = input("Would like to use color (y) or not (n)? \n")
 
+    # Color class setting
+
+    if color:
+
+        class colors:
+            HEADER = '\033[95m'
+            OKBLUE = '\033[94m'
+            OKCYAN = '\033[96m'
+            OKGREEN = '\033[92m'
+            WARNING = '\033[93m'
+            FAIL = '\033[91m'
+            ENDC = '\033[0m'
+            BOLD = '\033[1m'
+            UNDERLINE = '\033[4m'
+
+    elif not color:
+
+        class colors:
+            HEADER = ''
+            OKBLUE = ''
+            OKCYAN = ''
+            OKGREEN = ''
+            WARNING = ''
+            FAIL = ''
+            ENDC = ''
+            BOLD = ''
+            UNDERLINE = ''
+
+    else:
+
+        print("WARNING: Variable 'color' is not in range! " + color + " is what action is. \n")
+
     # Encrypt or decrypt.
     valid = False
     please_text = "e or d"
-    user_input = input("Would you like to (e)ncrypt or (d)ecrypt? \n")
+    user_input = input(colors.OKCYAN + "Would you like to (e)ncrypt or (d)ecrypt? \n" + colors.ENDC)
 
     while not valid:
 
@@ -131,7 +173,7 @@ def getUserInput():
         else:
             print()
             print(please_texts[please_text])
-            user_input = input("Would you like to (e)ncrypt or (d)ecrypt? \n")
+            user_input = input(colors.OKCYAN + "Would you like to (e)ncrypt or (d)ecrypt? \n" + colors.ENDC)
 
     # Set regex and please text.
     if action == "encrypt":
@@ -141,18 +183,18 @@ def getUserInput():
         pattern = decrypt_pattern
         please_text = "integers"
     else:
-        print("WARNING: Variable 'action' is not in range! " + action + " is what action is. \n")
+        print(colors.WARNING + "WARNING: Variable 'action' is not in range! " + action + " is what action is. \n" + colors.ENDC)
 
     # What to encrypt/decrypt.
     valid = False
-    text = input("What would you like to " + action + "? \n")
+    text = input(colors.OKCYAN + "What would you like to " + action + "? \n")
 
     while not valid:
 
         if pattern.fullmatch(text) == None or text == "\n":
             print()
             print(please_texts[please_text])
-            text = input("What would you like to " + action + "? \n")
+            text = input(colors.OKCYAN + "What would you like to " + action + "? \n" + colors.ENDC)
         else:
             valid = True
             print()
@@ -161,27 +203,27 @@ def getUserInput():
     valid = False
     please_text = "integers"
     pattern = decrypt_pattern
-    key = input("What is your key?\n")
+    key = input(colors.OKCYAN + "What is your key? \n" + colors.ENDC)
 
     while not valid:
 
         if pattern.fullmatch(key) == None or text == "\n":
             print()
             print(please_texts[please_text])
-            key = input("What is your key?\n")
+            key = input(colors.OKCYAN + "What is your key? \n" + colors.ENDC)
         else:
             valid = True
             print()
 
     # Function.
     if action == "encrypt":
-        print(encode(text, key) + " is your encrypted text. \n")
+        print(colors.OKCYAN + encode(text, key) + " is your encrypted text. \n" + colors.ENDC)
         getUserInput()
     elif action == "decrypt":
-        print(decode(text, key) + " is your decrypted text. \n")
+        print(colors.OKCYAN + decode(text, key) + " is your decrypted text. \n" + colors.ENDC)
         getUserInput()
     else:
-        print("WARNING: Variable 'action' is not in range! " + action + " is what action is. \n")
+        print(colors.WARNING + "WARNING: Variable 'action' is not in range! " + action + " is what action is. \n" + colors.ENDC)
         getUserInput()
 
 getUserInput()
