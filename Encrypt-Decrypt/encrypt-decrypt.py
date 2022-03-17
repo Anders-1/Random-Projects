@@ -217,10 +217,10 @@ def getUserInput():
 
     # Function.
     if action == "encrypt":
-        print(colors.OKCYAN + encode(text, key) + " is your encrypted text. \n" + colors.ENDC)
+        print(colors.OKGREEN + encode(text, key) + " is your encrypted text. \n" + colors.ENDC)
         getUserInput()
     elif action == "decrypt":
-        print(colors.OKCYAN + decode(text, key) + " is your decrypted text. \n" + colors.ENDC)
+        print(colors.OKGREEN + decode(text, key) + " is your decrypted text. \n" + colors.ENDC)
         getUserInput()
     else:
         print(colors.WARNING + "WARNING: Variable 'action' is not in range! " + action + " is what action is. \n" + colors.ENDC)
