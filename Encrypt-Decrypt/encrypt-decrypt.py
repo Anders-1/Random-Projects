@@ -47,6 +47,7 @@ def decode(string, key):
         # Decode letter.
         number = int(number) - int(key)
         # COMBAK: FIX ERROR WITH NUMBER OUT OF LIST RANGE
+        # I think I can fix this with mod (check notebook).
         # print(str(number) + " IS THE NUMBER")
         decoded = letters[int(number)]
         # Join result.
