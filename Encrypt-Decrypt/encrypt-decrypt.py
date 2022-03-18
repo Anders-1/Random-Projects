@@ -187,7 +187,7 @@ def getUserInput():
 
     # What to encrypt/decrypt.
     valid = False
-    text = input(colors.OKCYAN + "What would you like to " + action + "? \n")
+    text = input(colors.OKCYAN + "What would you like to " + action + "? \n" + colors.ENDC)
 
     while not valid:
 
