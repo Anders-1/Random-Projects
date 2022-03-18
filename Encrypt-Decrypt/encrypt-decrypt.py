@@ -70,6 +70,7 @@ if decode("010203040506070809101112", 1) != "abcdefghijkl":
 
 # User input.
 asked_color = False
+color = False
 
 def getUserInput():
 
@@ -78,7 +79,6 @@ def getUserInput():
     decrypt_pattern = re.compile("^[0-9]+$")
     pattern = encrypt_pattern
     action = ""
-    color = False
     class colors:
         HEADER = '\033[95m'
         OKBLUE = '\033[94m'
@@ -99,6 +99,7 @@ def getUserInput():
 
     }
     global asked_color
+    global color
 
     # Color
     if not asked_color:
