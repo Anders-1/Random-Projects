@@ -45,6 +45,7 @@ def decode(string, key):
     for number in string_list:
 
         # Decode letter.
+        # COMBAK: CANT USE KEY THAT HAS RESULT NUMBER IN 3 (OR MORE) DIGITS. THE CODE EXPECTS 2 DIGIT NUBERS.
         number = int(number) - int(key)
         try:
             decoded = letters[int(number)]
