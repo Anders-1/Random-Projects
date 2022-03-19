@@ -93,7 +93,7 @@ def getUserInput():
     please_texts = {
 
         "a-z": colors.UNDERLINE + "Please only use a-z." + colors.ENDC,
-        "integers": colors.UNDERLINE + "Please only use integers." + colors.ENDC,
+        "integers": colors.UNDERLINE + "Please only use positive integers." + colors.ENDC,
         "e or d": colors.UNDERLINE + "Please enter 'e' or 'd'." + colors.ENDC,
         "y or n": "Please enter 'y' or 'n'."
 
